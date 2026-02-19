@@ -5,22 +5,24 @@ import { InventoryPage } from '../pages/inventory-page';
 let loginPage: LoginPage;
 let inventoryPage: InventoryPage;
 const URL = 'https://www.saucedemo.com/';
-const pageCartUrl = /.*cart.html/
+const pageCartUrl = /.*cart.html/;
+const userName = process.env.USERNAME!;
+const passWord = process.env.PASSWORD!;
 
 test.beforeEach(async ({page}) => {
     await page.goto(URL);
     loginPage = new LoginPage(page);
     //Login
     await loginPage.clickUsername();
-    await loginPage.fillUsername('standard_user');
+    await loginPage.fillUsername(userName);
     await loginPage.clickPassword();
-    await loginPage.fillPassword('secret_sauce');
+    await loginPage.fillPassword(passWord);
     await loginPage.clickLoginBtn();
 
     inventoryPage = new InventoryPage(page);
 });
 
-test('Verify user can add item to cart', async () => {
+test.only('Verify adding an item to cart', async () => {
     await test.step('Add item to cart', async () => {
         await inventoryPage.clickAddItemToCart();
     });
@@ -31,10 +33,9 @@ test('Verify user can add item to cart', async () => {
         await inventoryPage.clickCartBtn();
         await inventoryPage.assertPageUrl(pageCartUrl);
     });
-    
 });
 
-test('Verify user can remove item in cart', async () => {
+test('Verify removing of item in cart', async () => {
     await test.step('Add item to cart', async () => {
         await inventoryPage.clickAddItemToCart();
     });
@@ -44,7 +45,7 @@ test('Verify user can remove item in cart', async () => {
     });
 });
 
-test('Verify user can sort inventory product', async () => {
+test('Verify inventory product sort', async () => {
     await test.step('Click product sort', async () => {
         await inventoryPage.clickProdSort();
     });

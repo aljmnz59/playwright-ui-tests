@@ -7,7 +7,6 @@ export class InventoryPage {
     readonly cartBadge: Locator;
     readonly removeToCartBtn: Locator;
     readonly prodSort: Locator;
-    readonly prodDetails: Locator;
     readonly itemName: Locator;
     readonly itemDescription: Locator;
     readonly itemPrice: Locator;
@@ -17,16 +16,15 @@ export class InventoryPage {
     //constructors
     constructor(page: Page){
         this.page = page;
-        this.addToCartBtn = page.locator(`//*[@id="add-to-cart-sauce-labs-backpack"]`);
-        this.cartBadge = page.locator('.shopping_cart_badge');
-        this.removeToCartBtn = page.locator('//*[@id="remove-sauce-labs-backpack"]');
-        this.prodSort = page.locator('[data-test="product-sort-container"]');
-        this.prodDetails = page.locator('.inventory_item');
-        this.itemName = page.locator('.inventory_item_name');
-        this.itemDescription = page.locator('.inventory_item_desc');
-        this.itemPrice = page.locator('.inventory_item_price');
-        this.itemImg = page.locator('.inventory_item_img');
-        this.cartBtn = page.locator('[data-test="shopping-cart-link"]');
+        this.addToCartBtn = page.getByRole('button', {name: 'Add to Cart'});
+        this.cartBadge = page.getByTestId('shopping-cart-badge');
+        this.removeToCartBtn = page.getByRole('button', {name: 'Remove'});
+        this.prodSort = page.getByTestId('product-sort-container');
+        this.itemName = page.getByTestId('inventory-item-name');
+        this.itemDescription = page.getByTestId('inventory-item-desc');
+        this.itemPrice = page.getByTestId('inventory-item-price');
+        this.itemImg = page.getByTestId('inventory-item-img');
+        this.cartBtn = page.getByTestId('shopping-cart-link');
     }   
     //methods
     async assertPageUrl(pageUrl: RegExp){
@@ -34,7 +32,10 @@ export class InventoryPage {
     }
 
     async clickAddItemToCart(){
-        await this.addToCartBtn.click();
+        const addItemsToCart = await this.addToCartBtn.count();
+        for(let i = 0; i <= addItemsToCart; i ++){
+            await this.addToCartBtn.nth(i).click();
+        }
     }
 
     async assertAddCartBadge(){
