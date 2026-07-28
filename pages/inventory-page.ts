@@ -16,7 +16,7 @@ export class InventoryPage {
     //constructors
     constructor(page: Page){
         this.page = page;
-        this.addToCartBtn = page.getByRole('button', {name: 'Add to Cart'});
+        this.addToCartBtn = page.getByRole('button', {name: 'Add to cart'});
         this.cartBadge = page.getByTestId('shopping-cart-badge');
         this.removeToCartBtn = page.getByRole('button', {name: 'Remove'});
         this.prodSort = page.getByTestId('product-sort-container');
@@ -33,6 +33,7 @@ export class InventoryPage {
 
     async clickAddItemToCart(){
         const addItemsToCart = await this.addToCartBtn.count();
+        console.log(addItemsToCart);
         for(let i = 0; i <= addItemsToCart; i ++){
             await this.addToCartBtn.nth(i).click();
         }
