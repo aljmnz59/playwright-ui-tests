@@ -22,7 +22,7 @@ test.beforeEach(async ({page}) => {
     inventoryPage = new InventoryPage(page);
 });
 
-test.only('Verify adding an item to cart', async () => {
+test('Verify adding an item to cart', async () => {
     await test.step('Add item to cart', async () => {
         await inventoryPage.clickAddItemToCart();
     });

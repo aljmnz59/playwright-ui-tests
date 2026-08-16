@@ -16,26 +16,24 @@ export class InventoryPage {
     //constructors
     constructor(page: Page){
         this.page = page;
-        this.addToCartBtn = page.getByRole('button', {name: 'Add to cart'});
-        this.cartBadge = page.getByTestId('shopping-cart-badge');
-        this.removeToCartBtn = page.getByRole('button', {name: 'Remove'});
-        this.prodSort = page.getByTestId('product-sort-container');
-        this.itemName = page.getByTestId('inventory-item-name');
-        this.itemDescription = page.getByTestId('inventory-item-desc');
-        this.itemPrice = page.getByTestId('inventory-item-price');
-        this.itemImg = page.getByTestId('inventory-item-img');
-        this.cartBtn = page.getByTestId('shopping-cart-link');
-    }   
+        this.addToCartBtn = page.getByRole('button', { name: 'Add to cart' });
+        this.cartBadge = page.locator('[data-test="shopping-cart-badge"]');
+        this.removeToCartBtn = page.getByRole('button', { name: 'Remove' });
+        this.prodSort = page.locator('[data-test="product-sort-container"]');
+        this.itemName = page.locator('[data-test="inventory-item-name"]');
+        this.itemDescription = page.locator('[data-test="inventory-item-desc"]');
+        this.itemPrice = page.locator('[data-test="inventory-item-price"]');
+        this.itemImg = page.locator('[data-test="inventory-item-img"]');
+        this.cartBtn = page.locator('[data-test="shopping-cart-link"]');
+    }
     //methods
     async assertPageUrl(pageUrl: RegExp){
         await expect(this.page).toHaveURL(pageUrl);
     }
 
     async clickAddItemToCart(){
-        const addItemsToCart = await this.addToCartBtn.count();
-        console.log(addItemsToCart);
-        for(let i = 0; i <= addItemsToCart; i ++){
-            await this.addToCartBtn.nth(i).click();
+        while (await this.addToCartBtn.count() > 0) {
+            await this.addToCartBtn.first().click();
         }
     }
 
@@ -44,7 +42,9 @@ export class InventoryPage {
     }
 
     async clickRemoveItemToCart(){
-        await this.removeToCartBtn.click();
+        while (await this.removeToCartBtn.count() > 0) {
+            await this.removeToCartBtn.first().click();
+        }
     }
 
     async assertRmvCartBadge(){
