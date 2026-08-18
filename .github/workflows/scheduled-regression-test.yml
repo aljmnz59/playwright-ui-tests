@@ -1,4 +1,4 @@
-name: Run regression tests of feature branches
+name: Run scheduled regression test
 
 on: 
   schedule:
