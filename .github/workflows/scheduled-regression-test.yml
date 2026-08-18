@@ -1,6 +1,7 @@
 name: Run scheduled regression test
 
 on:
+  push: 
   schedule:
     - cron: '*/5 * * * *'  
 
