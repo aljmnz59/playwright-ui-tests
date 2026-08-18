@@ -1,0 +1,23 @@
+name: Run regression tests of feature branches
+
+on: 
+  schedule:
+    - cron: '50 23 * * *'  
+
+jobs:
+  run-regression-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.1.0
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v6.5.0
+      - name: Install NPM
+        run: npm install
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run regression tests
+        run: npm run test:e2e
+        env:
+          USERNAME: "standard_user"
+          PASSWORD: "secret_sauce"
