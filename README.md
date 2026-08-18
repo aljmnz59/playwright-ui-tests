@@ -1,6 +1,6 @@
 ﻿# Saucedemo E2E Testing with Playwright
 
-Saucedemo is an e-commerece website that was developed for software tester/QA  to practice manual testing, web automation and end-to-end testing.
+Saucedemo is an e-commerece website 
 
 ## Getting Started
 
