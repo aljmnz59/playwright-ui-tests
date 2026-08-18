@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  run-unit-test:
+  run-regression-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
