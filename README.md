@@ -2,52 +2,31 @@
  
  # Saucedemo E2E Testing with Playwright
 
-Saucedemo is an e-commerece website that was developed for software tester/QA  to practice manual testing, web automation and end-to-end testing.
-
-## Getting Started
-
-* Follow these steps to setup the web test environment on your local machine.
+Saucedemo is an e-commerece website that was developed for software tester/QA to practice manual testing, web automation and end-to-end testing. This repository containcs end-to-end tests written in Playwright with TypeScripts for the Saucedemo website
 
 ### Prerequisites
+Before running the tests, make sure you have the following:
 
-1. **Install Node.js and NPM**
-    Go to https://nodejs.org/en/download and download the latest version of Node.js. Next to install npm (Node Package Manager) type:
-    ```bash
-    npm install -g npm
-    ```
+1. Node.js and NPM installed.
+2. Saucedemo is running.
+3. Playwright installed.
 
-    then type:
+### Installation
 
-    ```bash
-    node -v 
-    ```
+1. Clone the repository to your local machine.
+2. Install the dependencies:
+```bash
+npm install
+```
+and
+```bash
+npx playwright install --with deps
+```
+### Running the Tests
+1. To run all tests:
+```bash
+npm run test:e2e
+```
 
-    and 
-
-    ```bash
-    npm -v 
-    ```
-
-    To confirm the node and npm versions.
-
-2. **Install Git**
-    Go to https://git-scm.com/install/ , select your operating system and download the Git.
-
-    After downloading type:
-
-    ```bash
-    git -v
-    ```
-3. **Install Playwright**
-    To install playwright, just type:
-
-    ```bash
-    npm init playwright@latest
-    ```
-
-    * Choose between TypeScript or JavaScript.
-    * Name your end-to-end tests folder (default is tests).
-    * Add a GitHub Actions workflow if needed.
-    * Install Playwright browsers (recommended).
 
 
